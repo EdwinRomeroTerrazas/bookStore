@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="bookStore">
+    <head>
+        <meta charset="UTF-8">
+	    <title>Awesome BookStore</title>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    </head>
+<!-- Body -->
+    <body ng-controller="bookStoreController as store">
+        <!-- TitleBar -->
+        <h1 class="center-block thumbnail">Awesome BookStore!</h1>
+        <!-- TitleBar End -->
+        <!-- FiltersBar -->
+        <div class="thumbnail">
+            <label>Search:</label>
+            <input class="form-control" placeholder="by anything" type="text" ng-model="searchBooks">
+            <label>Order by: </label>
+            <select class="form-control" ng-model="orderBooks">
+                <option value="title" >Title</option>
+                <option value="editorial">Editorial</option>
+            </select>
+        </div>
+        <!-- FiltersBar End -->
+        <div ng-repeat="product in store.products | filter:searchBooks | orderBy:orderBooks">
+            <ul>
+                <li class="pull-left thumbnail ">
+                    <img class="pull-left thumbnail" ng-src="{{product.images[0].url}}">
+                    <h1 clas="lead">{{product.title}}</h1>
+                    <h3>{{product.author}}</h3> 
+                    <h4>{{product.editorial}}</h4> 
+                    <p class="text-justify lead">{{product.description}}</p> 
+                 </li>
+            </ul>
+        </div>
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+                                                                                   
+    </body>
+<!-- Body End -->
+</html>
